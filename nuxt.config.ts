@@ -8,7 +8,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-
   typescript: {
     strict: true,
   },
