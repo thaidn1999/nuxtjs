@@ -1,7 +1,9 @@
 <template>
-  <div class="">
-    Day la layout goc
-    <slot />
+  <div class="h-full w-full bg-[#03090e] font-sans overflow-hidden grid">
+    <div class="ml-16 overflow-auto overflow-x-hidden">
+      <slot />
+    </div>
+    <Navbar class="lg:order-first" />
   </div>
 </template>
 

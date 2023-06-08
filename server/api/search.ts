@@ -4,14 +4,14 @@ export default defineEventHandler(async (event): Promise<ListType> => {
   const config = useRuntimeConfig();
   const TMDB_API_URL = config.public.api_url;
 
-  const { category, type, ...rest } = getQuery(event);
+  const { ...params } = getQuery(event);
   try {
-    return await $fetch(`${type}/${category}`, {
+    return await $fetch("search/multi", {
       baseURL: TMDB_API_URL,
       params: {
         api_key: config.public.api_key,
         language: "en-US",
-        ...rest,
+        ...params,
       },
     });
   } catch (error: any) {

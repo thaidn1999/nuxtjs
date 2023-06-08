@@ -1,17 +1,17 @@
-import type { ListType } from "../../interfaces";
+import type { Media } from "../../interfaces";
 
-export default defineEventHandler(async (event): Promise<ListType> => {
+export default defineEventHandler(async (event): Promise<Media> => {
   const config = useRuntimeConfig();
   const TMDB_API_URL = config.public.api_url;
 
-  const { category, type, ...rest } = getQuery(event);
+  const { type, id } = getQuery(event);
   try {
-    return await $fetch(`${type}/${category}`, {
+    return await $fetch(`${type}/${id}`, {
       baseURL: TMDB_API_URL,
       params: {
         api_key: config.public.api_key,
-        language: "en-US",
-        ...rest,
+        include_image_language: "en",
+        append_to_response: "videos,credits,images,external_ids,release_dates",
       },
     });
   } catch (error: any) {

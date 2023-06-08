@@ -1,17 +1,16 @@
-import type { ListType } from "../../interfaces";
+import type { Genre } from "../../interfaces";
 
-export default defineEventHandler(async (event): Promise<ListType> => {
+export default defineEventHandler(async (event): Promise<Genre[]> => {
   const config = useRuntimeConfig();
   const TMDB_API_URL = config.public.api_url;
 
-  const { category, type, ...rest } = getQuery(event);
+  const { type } = getQuery(event);
   try {
-    return await $fetch(`${type}/${category}`, {
+    return await $fetch(`genre/${type}/list`, {
       baseURL: TMDB_API_URL,
       params: {
         api_key: config.public.api_key,
         language: "en-US",
-        ...rest,
       },
     });
   } catch (error: any) {
