@@ -122,3 +122,5 @@ export interface ListType {
   total_pages: number;
   total_results: number;
 }
+
+export type IComponent = "overview" | "photos" | "videos";

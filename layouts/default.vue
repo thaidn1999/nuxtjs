@@ -1,5 +1,7 @@
 <template>
-  <div class="h-full w-full bg-[#03090e] font-sans overflow-hidden grid">
+  <div
+    class="h-full w-full bg-[#03090e] text-white font-sans overflow-hidden grid"
+  >
     <div class="ml-16 overflow-auto overflow-x-hidden">
       <slot />
     </div>

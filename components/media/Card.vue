@@ -1,16 +1,16 @@
 <template>
   <div class="wrap-card">
     <NuxtLink
-      :href="`/${item.media_type || type}/${item.id}`"
+      :href="`/${props.item.media_type || props.type}/${props.item.id}`"
       class="flex-1 pb-2"
     >
       <div
         class="flex justify-center items-center rounded-2xl bg-zinc-800 aspect-[10/16] transition-all hover:scale-[1.02] w-[234px]"
       >
         <img
-          v-if="item.poster_path"
-          :src="`${TMDB_IMG_URL}/w400${item.poster_path}`"
-          :alt="item.title || item.name"
+          v-if="props.item.poster_path"
+          :src="`${TMDB_IMG_URL}/w400${props.item.poster_path}`"
+          :alt="props.item.title || props.item.name"
           class="w-full h-full object-cover"
         />
         <Icon
@@ -20,9 +20,9 @@
         />
       </div>
       <div class="mt-2 mb-1 line-clamp-2 h-12">
-        {{ item.title || item.name }}
+        {{ props.item.title || props.item.name }}
       </div>
-      <StarRating :value="item.vote_average" :show-value="true" />
+      <StarRating :value="props.item.vote_average" :show-value="true" />
     </NuxtLink>
   </div>
 </template>
@@ -32,7 +32,7 @@ import type { Media, MediaType } from "~/interfaces";
 const config = useRuntimeConfig();
 const TMDB_IMG_URL = config.public.img_url;
 
-defineProps<{
+const props = defineProps<{
   type: MediaType;
   item: Media;
 }>();

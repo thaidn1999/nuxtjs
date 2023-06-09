@@ -1,12 +1,10 @@
 <template>
   <div class="text-white">
     <MediaBanner :type="type" :item="bannerItem" />
-
     <MediaTitle
       :title="QUERY_ITEMS[0].title"
       :more-link="`/${QUERY_ITEMS[0].type}/category/${QUERY_ITEMS[0].category}`"
     />
-
     <div class="flex items-center overflow-auto py-8 lg:py-4 custom-scrollbar">
       <MediaCard
         :type="type"
@@ -22,6 +20,7 @@
 
 <script setup lang="ts">
 import type { MediaType, QueryItem } from "~/interfaces";
+
 const type: MediaType = "movie";
 const category = "popular";
 
@@ -45,31 +44,4 @@ const bannerItem = await $fetch("/api/detail", {
 });
 </script>
 
-<style lang="scss" scoped>
-.custom-scrollbar {
-  &::-webkit-scrollbar {
-    cursor: pointer;
-    width: 12px;
-    height: 12px;
-    // min-height: 50px;
-    -webkit-transition: width 0.3s;
-    transition: width 0.3s;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #454545;
-
-    border-radius: 5px;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #454545;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
